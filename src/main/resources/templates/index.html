@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" xmlns:th="www.thymeleaf.org" th:replace="~{ base :: layout(~{::title} , ~{::section}) }">
+<head>
+
+
+<title>Index page</title>
+
+
+</head>
+<body>
+	<section>
+		
+	 <div class="container p-5">
+		 
+		 <th:block th:if="${session.msg}">
+					<p class="text-center text-success fs-4">[[${session.msg}]]</p>	
+					<th:block th:text="${@empServiceImpl.removeSessionMessage()}"></th:block>
+					</th:block>
+		 
+		<table class="table table-striped">
+  <thead class="bg-primary text-white">
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone No</th>
+      <th scope="col">Salary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="e:${empList}">
+      <th scope="row">[[${e.id}]]</th>
+      <td>[[${e.name}]]</td>
+      <td>[[${e.address}]]</td>
+      <td>[[${e.email}]]</td>
+      <td>[[${e.phno}]]</td>
+      <td>[[${e.salary}]]</td>
+      <td>
+		 <a th:href="@{'editemp/'+${e.id}}" class="btn btn-sm btn-primary">Edit</a>
+		 <a href="#" class="btn btn-sm btn-danger">Delete</a>
+	  </td>
+    </tr>
+    
+    <!--<tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>UK</td>
+      <td>jacob@gmail.com</td>
+      <td>8569854126</td>
+      <td>40000</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Riya</td>
+      <td>India</td>
+      <td>riya@gmail.com</td>
+      <td>8542659126</td>
+      <td>30000</td>
+    </tr>-->
+    
+  </tbody>
+</table>
+		
+	</div>
+
+</section>
+	
+	
+	
+</body>
+</html>
